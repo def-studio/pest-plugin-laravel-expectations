@@ -31,7 +31,7 @@
         "php": "^8.0 || ^8.1",
         "pestphp/pest": "dev-master",
         "pestphp/pest-plugin": "^1.0",
-        "defstudio/pest-plugin-laravel": "dev-master"
+        "pestphp/pest-plugin-laravel": "^v1.0"
     },
     "autoload": {
         "psr-4": {
@@ -47,7 +47,7 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "dev-phpunit10",
+        "orchestra/testbench": "^v6.0",
         "pestphp/pest-dev-tools": "dev-master"
     },
     "extra": {
@@ -72,11 +72,5 @@
             "@test:unit"
         ],
         "coverage": "@test:unit --coverage"
-    },
-    "repositories": [
-        {
-            "type": "github",
-            "url": "https://github.com/def-studio/pest-plugin-laravel"
-        }
-    ]
+    }
 }

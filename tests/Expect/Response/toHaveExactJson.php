@@ -3,7 +3,7 @@
 use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect(get('json'))->toHaveExactJson([
         'foo'  => [
             'bar' => 'baz',
@@ -40,7 +40,7 @@ test('pass', function () {
     ]);
 });
 
-test('fails', function () {
+it('fails', function () {
     expect(get('json'))->toHaveExactJson([
         'foo' => [
             'bar' => 'baz',
@@ -53,11 +53,11 @@ test('fails', function () {
     ]);
 })->throws(ExpectationFailedException::class, 'Failed asserting that two strings are equal');
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect(get('json'))->not->toHaveExactJson(['foo' => ['bar' => 'baz']]);
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     expect(get('json'))->not->toHaveExactJson([
         'foo'  => [
             'bar' => 'baz',

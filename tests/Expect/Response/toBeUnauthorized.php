@@ -3,7 +3,7 @@
 use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     $response1 = get('/staff-only');
 
     expect($response1)->toBeUnauthorized();
@@ -13,19 +13,19 @@ test('pass', function () {
     expect($response2)->toBeSuccessful()->not->toBeUnauthorized();
 });
 
-test('fails', function () {
+it('fails', function () {
     $response = get('/ok');
 
     expect($response)->toBeUnauthorized();
 })->throws(ExpectationFailedException::class, 'Expected response status code [401] but received 200');
 
-test('pass with negation', function () {
+it('passes with negation', function () {
     $response = get('/ok');
 
     expect($response)->not->toBeUnauthorized();
 });
 
-test('fails with negation', function () {
+it('fails with negation', function () {
     $response = get('/staff-only');
 
     expect($response)->not->toBeUnauthorized();

@@ -4,7 +4,7 @@ use function Pest\Laravel\actingAs;
 use PHPUnit\Framework\ExpectationFailedException;
 use Tests\Models\User;
 
-test('pass', function () {
+it('passes', function () {
     $user = User::make([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -16,7 +16,7 @@ test('pass', function () {
     expect($user)->toBeAuthenticated();
 });
 
-test('fail with guest', function () {
+it('fails with guest', function () {
     $user = User::make([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -26,7 +26,7 @@ test('fail with guest', function () {
     expect($user)->toBeAuthenticated();
 })->throws(ExpectationFailedException::class, 'The user is not authenticated');
 
-test('fail with wrong user', function () {
+it('fails with wrong user', function () {
     $user1 = User::make([
         'id'       => 1,
         'name'     => 'test user',
@@ -46,7 +46,7 @@ test('fail with wrong user', function () {
     expect($user2)->toBeAuthenticated();
 })->throws(ExpectationFailedException::class, "The User ID #2 doesn't match authenticated User ID #1");
 
-test('negated pass with guest', function () {
+it('passes when negated with guest', function () {
     $user = User::make([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -56,7 +56,7 @@ test('negated pass with guest', function () {
     expect($user)->not->toBeAuthenticated();
 });
 
-test('negated pass with wrong user', function () {
+it('passes when negated with wrong user', function () {
     $user1 = User::make([
         'id'       => 1,
         'name'     => 'test user',
@@ -76,7 +76,7 @@ test('negated pass with wrong user', function () {
     expect($user2)->not->toBeAuthenticated();
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     $user = User::make([
         'name'     => 'test user',
         'email'    => 'email@test.xx',

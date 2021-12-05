@@ -3,18 +3,18 @@
 use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect(get('/session'))->toHaveSession('foo', 'bar');
 });
 
-test('fail', function () {
+it('fails', function () {
     expect(get('/session'))->toHaveSession('foo', 'baz');
 })->throws(ExpectationFailedException::class, 'Failed asserting that two strings are equal.');
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect(get('/session'))->not->toHaveSession('foo', 'baz');
 });
 
-test('fail negated', function () {
+it('fails negated', function () {
     expect(get('/session'))->not->toHaveSession('foo', 'bar');
 })->throws(ExpectationFailedException::class, "Expecting Illuminate\Testing\TestResponse Object (...) not to have session 'foo' 'bar'.");

@@ -2,18 +2,18 @@
 
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect(now())->toBeCurrentSecond();
 });
 
-test('fails', function () {
+it('fails', function () {
     expect(now()->subSecond())->toBeCurrentSecond();
 })->throws(ExpectationFailedException::class);
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect(now()->subSecond())->not->toBeCurrentSecond();
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     expect(now())->not->toBeCurrentSecond();
 })->throws(ExpectationFailedException::class);

@@ -3,37 +3,37 @@
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     Storage::put('testfile.txt', 'foo');
 
     expect('testfile.txt')->toExistInStorage();
 });
 
-test('pass with non default storage', function () {
+it('passes with non default storage', function () {
     Storage::disk('secondary')->put('testfile.txt', 'foo');
 
     expect('testfile.txt')->toExistInStorage('secondary');
 });
 
-test('fail', function () {
+it('fails', function () {
     expect('testfile.txt')->toExistInStorage();
 })->throws(ExpectationFailedException::class, "Failed asserting that testfile.txt exist in 'default' storage");
 
-test('fail with non default storage', function () {
+it('fails with non default storage', function () {
     Storage::put('testfile.txt', 'foo');
     expect('testfile.txt')->toExistInStorage('secondary');
 })->throws(ExpectationFailedException::class, "Failed asserting that testfile.txt exist in 'secondary' storage");
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect('testfile.txt')->not->toExistInStorage();
 });
 
-test('pass negated with non default storage', function () {
+it('passes negated with non default storage', function () {
     Storage::put('testfile.txt', 'foo');
     expect('testfile.txt')->not->toExistInStorage('secondary');
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     Storage::put('testfile.txt', 'foo');
 
     expect('testfile.txt')->toExistInStorage();
@@ -41,7 +41,7 @@ test('fails negated', function () {
     expect('testfile.txt')->not->toExistInStorage();
 })->throws(ExpectationFailedException::class, "Expecting 'testfile.txt' not to exist in storage");
 
-test('fails negated non default storage', function () {
+it('fails negated non default storage', function () {
     Storage::disk('secondary')->put('testfile.txt', 'foo');
 
     expect('testfile.txt')->not->toExistInStorage('secondary');

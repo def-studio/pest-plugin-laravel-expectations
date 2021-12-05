@@ -3,7 +3,7 @@
 use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function ($structure) {
+it('passes', function ($structure) {
     expect(get('json'))->toHaveJsonStructure($structure);
 })->with([
     'without structure'              => null,
@@ -14,14 +14,14 @@ test('pass', function ($structure) {
     'nested after wildcard'          => ['structure' => ['baz' => ['*' => ['foo', 'bar' => ['foo', 'bar']]]]],
 ]);
 
-test('fails', function () {
+it('fails', function () {
     expect(get('json'))->toHaveJsonStructure(['foo' => ['bee']]);
 })->throws(ExpectationFailedException::class, "Failed asserting that an array has the key 'bee'");
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect(get('json'))->not->toHaveJsonStructure(['foo' => ['bee']]);
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     expect(get('json'))->not->toHaveJsonStructure(['foo']);
 })->throws(ExpectationFailedException::class);

@@ -5,7 +5,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use Tests\Models\Post;
 use Tests\Models\User;
 
-test('pass with single argument', function () {
+it('passes with single argument', function () {
     $user = User::make(['id' => 1]);
     $post = Post::make(['user_id' => 1]);
 
@@ -16,7 +16,7 @@ test('pass with single argument', function () {
     expect($user)->toBeAbleTo('edit', $post);
 });
 
-test('pass with multiple arguments', function () {
+it('passes with multiple arguments', function () {
     $user = User::make(['id' => 1]);
     $post_1 = Post::make(['user_id' => 1]);
     $post_2 = Post::make(['user_id' => 1]);
@@ -28,7 +28,7 @@ test('pass with multiple arguments', function () {
     expect($user)->toBeAbleTo('merge', [$post_1, $post_2]);
 });
 
-test('fails', function () {
+it('fails', function () {
     $user = User::make(['id' => 1]);
     $post = Post::make(['user_id' => 2]);
 
@@ -39,7 +39,7 @@ test('fails', function () {
     expect($user)->toBeAbleTo('edit', $post);
 })->throws(ExpectationFailedException::class, 'Failed asserting that the given user is authorized to "edit" with [Tests\Models\Post Object (...)]');
 
-test('negated pass', function () {
+it('passes when negated', function () {
     $user = User::make(['id' => 1]);
     $post = Post::make(['user_id' => 2]);
 
@@ -50,7 +50,7 @@ test('negated pass', function () {
     expect($user)->not->toBeAbleTo('edit', $post);
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     $user = User::make(['id' => 1]);
     $post = Post::make(['user_id' => 1]);
 

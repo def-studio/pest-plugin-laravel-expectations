@@ -3,7 +3,7 @@
 use PHPUnit\Framework\ExpectationFailedException;
 use Tests\Models\User;
 
-test('pass', function () {
+it('passes', function () {
     User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -16,21 +16,21 @@ test('pass', function () {
     ])->toBeValidCredentials();
 });
 
-test('fail', function () {
+it('fails', function () {
     expect([
         'email'    => 'wrong-email@test.xx',
         'password' => 'passwords',
     ])->toBeValidCredentials();
 })->throws(ExpectationFailedException::class, 'The given credentials are invalid');
 
-test('negated pass', function () {
+it('passes when negated', function () {
     expect([
         'email'    => 'wrong-email@test.xx',
         'password' => 'passwords',
     ])->not->toBeValidCredentials();
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',

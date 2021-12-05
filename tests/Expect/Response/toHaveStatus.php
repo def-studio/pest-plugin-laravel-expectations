@@ -4,7 +4,7 @@ use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\Response;
 
-test('pass', function ($status) {
+it('passes', function ($status) {
     expect(get("/status/$status"))->toHaveStatus($status);
 })->with([
     Response::HTTP_CREATED,
@@ -17,14 +17,14 @@ test('pass', function ($status) {
     Response::HTTP_SERVICE_UNAVAILABLE,
 ]);
 
-test('fail', function () {
+it('fails', function () {
     expect(get('/status/404'))->toHaveStatus(200);
 })->throws(ExpectationFailedException::class, 'Expected response status code [200] but received 404');
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect(get('/status/404'))->not->toHaveStatus(200);
 });
 
-test('fail negated', function () {
+it('fails negated', function () {
     expect(get('/status/200'))->not->toHaveStatus(200);
 })->throws(ExpectationFailedException::class, "Expecting Illuminate\Testing\TestResponse Object (...) not to have status 200");

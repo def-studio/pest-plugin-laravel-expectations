@@ -3,7 +3,7 @@
 use PHPUnit\Framework\ExpectationFailedException;
 use Tests\Models\SoftDeletableUser;
 
-test('pass', function () {
+it('passes', function () {
     $user = SoftDeletableUser::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -15,7 +15,7 @@ test('pass', function () {
     expect($user)->toBeSoftDeleted();
 });
 
-test('fail', function () {
+it('fails', function () {
     $user = SoftDeletableUser::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -25,7 +25,7 @@ test('fail', function () {
     expect($user)->toBeSoftDeleted();
 })->throws(ExpectationFailedException::class);
 
-test('negated pass', function () {
+it('passes when negated', function () {
     $user = SoftDeletableUser::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -35,7 +35,7 @@ test('negated pass', function () {
     expect($user)->not->toBeSoftDeleted();
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     $user = SoftDeletableUser::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',

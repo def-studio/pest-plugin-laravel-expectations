@@ -3,19 +3,19 @@
 use Illuminate\Database\Eloquent\Collection;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect(Collection::empty())->toBeEloquentCollection();
     expect('1, 2, 3')->not->toBeCollection();
 });
 
-test('fail', function () {
+it('fails', function () {
     expect(collect(['a', 'b', 'c']))->toBeEloquentCollection();
 })->throws(ExpectationFailedException::class);
 
-test('negated pass', function () {
+it('passes when negated', function () {
     expect(collect(['a', 'b', 'c']))->not->toBeEloquentCollection();
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     expect(Collection::empty())->not->toBeEloquentCollection();
 })->throws(ExpectationFailedException::class);

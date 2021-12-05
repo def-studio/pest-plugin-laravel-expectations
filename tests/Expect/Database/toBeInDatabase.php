@@ -3,7 +3,7 @@
 use PHPUnit\Framework\ExpectationFailedException;
 use Tests\Models\User;
 
-test('pass', function () {
+it('passes', function () {
     $user = User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -15,15 +15,15 @@ test('pass', function () {
     expect(['email' => 'email@test.xx'])->toBeInDatabase('users');
 });
 
-test('fail', function () {
+it('fails', function () {
     expect(['id' => 1])->toBeInDatabase('users');
 })->throws(ExpectationFailedException::class);
 
-test('negated pass', function () {
+it('passes when negated', function () {
     expect(['id' => 1])->not->toBeInDatabase('users');
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',

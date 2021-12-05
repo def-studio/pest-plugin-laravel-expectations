@@ -4,7 +4,7 @@ use Illuminate\Http\Response;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -15,7 +15,7 @@ test('pass', function () {
     expect($response)->toHaveJsonValidationErrors('foo');
 });
 
-test('pass with validation error message', function () {
+it('passes with validation error message', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -26,7 +26,7 @@ test('pass with validation error message', function () {
     expect($response)->toHaveJsonValidationErrors(['foo' => 'oops']);
 });
 
-test('pass with validation partial error message', function () {
+it('passes with validation partial error message', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -37,7 +37,7 @@ test('pass with validation partial error message', function () {
     expect($response)->toHaveJsonValidationErrors(['foo' => 'oops']);
 });
 
-test('pass with array', function () {
+it('passes with array', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -48,7 +48,7 @@ test('pass with array', function () {
     expect($response)->toHaveJsonValidationErrors(['foo', 'bar']);
 });
 
-test('pass with custom errors key', function () {
+it('passes with custom errors key', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -59,7 +59,7 @@ test('pass with custom errors key', function () {
     expect($response)->toHaveJsonValidationErrors('foo', 'data');
 });
 
-test('fails', function () {
+it('fails', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -70,7 +70,7 @@ test('fails', function () {
     expect($response)->toHaveJsonValidationErrors('bar');
 })->throws(ExpectationFailedException::class, "Failed to find a validation error in the response for key: 'bar'");
 
-test('fails with wrong message', function () {
+it('fails with wrong message', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -81,7 +81,7 @@ test('fails with wrong message', function () {
     expect($response)->toHaveJsonValidationErrors(['foo' => 'damn']);
 })->throws(AssertionFailedError::class, "Failed to find a validation error in the response for key and message: 'foo' => 'damn'");
 
-test('fails without errors', function () {
+it('fails without errors', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -91,7 +91,7 @@ test('fails without errors', function () {
     expect($response)->toHaveJsonValidationErrors('bar');
 })->throws(ExpectationFailedException::class, "Failed to find a validation error in the response for key: 'bar'");
 
-test('pass negated', function () {
+it('passes negated', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',
@@ -102,7 +102,7 @@ test('pass negated', function () {
     expect($response)->not->toHaveJsonValidationErrors('bar');
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     $response = build_response(function (Response $response) {
         $response->setContent(json_encode([
             'status' => 'ok',

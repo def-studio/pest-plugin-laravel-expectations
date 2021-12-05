@@ -3,18 +3,18 @@
 use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect(get('json'))->toHaveJsonFragment(['bar' => 'baz']);
 });
 
-test('fails', function () {
+it('fails', function () {
     expect(get('json'))->toHaveJsonFragment(['bar' => 'foo']);
 })->throws(ExpectationFailedException::class, 'Unable to find JSON');
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect(get('json'))->not->toHaveJsonFragment(['bar' => 'foo']);
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     expect(get('json'))->not->toHaveJsonFragment(['bar' => 'baz']);
 })->throws(ExpectationFailedException::class);

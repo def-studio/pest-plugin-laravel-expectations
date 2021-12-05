@@ -3,7 +3,7 @@
 use PHPUnit\Framework\ExpectationFailedException;
 use Tests\Models\User;
 
-test('pass', function () {
+it('passes', function () {
     $user_1 = User::create([
         'name'     => 'first user',
         'email'    => '1@test.xx',
@@ -15,7 +15,7 @@ test('pass', function () {
     expect($user_1)->toBeSameModelAs($user_2);
 });
 
-test('fail', function () {
+it('fails', function () {
     $user_1 = User::create([
         'name'     => 'first user',
         'email'    => '1@test.xx',
@@ -31,7 +31,7 @@ test('fail', function () {
     expect($user_1)->toBeSameModelAs($user_2);
 })->throws(ExpectationFailedException::class, 'Failed asserting that two models have the same ID and belongs to the same table');
 
-test('negated pass', function () {
+it('passes when negated', function () {
     $user_1 = User::create([
         'name'     => 'first user',
         'email'    => '1@test.xx',
@@ -47,7 +47,7 @@ test('negated pass', function () {
     expect($user_1)->not->toBeSameModelAs($user_2);
 });
 
-test('negated fail', function () {
+it('fails when negated', function () {
     $user_1 = User::create([
         'name'     => 'first user',
         'email'    => '1@test.xx',

@@ -2,18 +2,18 @@
 
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect(now())->toBeCurrentMonth();
 });
 
-test('fails', function () {
+it('fails', function () {
     expect('2999-01-01')->toBeCurrentMonth();
 })->throws(ExpectationFailedException::class, 'Failed to assert that [2999-01-01 00:00:00] is in the current month');
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect('2999-01-01')->not->toBeCurrentMonth();
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     expect(now())->not->toBeCurrentMonth();
 })->throws(ExpectationFailedException::class);

@@ -4,7 +4,7 @@ use Illuminate\Testing\TestResponse;
 use function Pest\Laravel\post;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     $response = post('/validate', ['email' => 'taylor']);
 
     if (!method_exists(TestResponse::class, 'assertValid')) {
@@ -16,7 +16,7 @@ test('pass', function () {
     expect($response)->toHaveInvalid(['email']);
 });
 
-test('fails', function () {
+it('fails', function () {
     $response = post('/validate', ['email' => 'taylor@laravel.com']);
 
     if (!method_exists(TestResponse::class, 'assertValid')) {
@@ -26,7 +26,7 @@ test('fails', function () {
     expect($response)->toHaveInvalid(['email']);
 })->throws(ExpectationFailedException::class, 'Session is missing expected key [errors]');
 
-test('pass with negation', function () {
+it('passes with negation', function () {
     $response = post('/validate', ['email' => 'taylor@laravel.com']);
 
     if (!method_exists(TestResponse::class, 'assertValid')) {
@@ -38,7 +38,7 @@ test('pass with negation', function () {
     expect($response)->not->toHaveInvalid(['email']);
 });
 
-test('fails with negation', function () {
+it('fails with negation', function () {
     $response = post('/validate');
 
     if (!method_exists(TestResponse::class, 'assertValid')) {

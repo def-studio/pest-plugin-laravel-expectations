@@ -3,7 +3,7 @@
 use Illuminate\Http\Response;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     $response = build_response(function (Response $response) {
         $response->setStatusCode(403);
     });
@@ -11,7 +11,7 @@ test('pass', function () {
     expect($response)->toBeForbidden();
 });
 
-test('fails', function () {
+it('fails', function () {
     $response = build_response(function (Response $response) {
         $response->setStatusCode(200);
     });
@@ -19,7 +19,7 @@ test('fails', function () {
     expect($response)->toBeForbidden();
 })->throws(ExpectationFailedException::class, 'Expected response status code [403] but received 200');
 
-test('pass with negation', function () {
+it('passes with negation', function () {
     $response = build_response(function (Response $response) {
         $response->setStatusCode(201);
     });
@@ -27,7 +27,7 @@ test('pass with negation', function () {
     expect($response)->not->toBeForbidden();
 });
 
-test('fails with negation', function () {
+it('fails with negation', function () {
     $response = build_response(function (Response $response) {
         $response->setStatusCode(403);
     });

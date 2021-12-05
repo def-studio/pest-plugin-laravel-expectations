@@ -2,18 +2,18 @@
 
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     expect('2021-10-19')->toBeTuesday();
 });
 
-test('fails', function () {
+it('fails', function () {
     expect('2021-10-20')->toBeTuesday();
 })->throws(ExpectationFailedException::class, 'Failed to assert that [2021-10-20 00:00:00] is Tuesday');
 
-test('pass negated', function () {
+it('passes negated', function () {
     expect('2021-10-20')->not->toBeTuesday();
 });
 
-test('fails negated', function () {
+it('fails negated', function () {
     expect('2021-10-19')->not->toBeTuesday();
 })->throws(ExpectationFailedException::class);

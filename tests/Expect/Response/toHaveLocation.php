@@ -3,7 +3,7 @@
 use Illuminate\Http\Response;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     $response = build_response(function (Response $response) {
         $response->header('Location', '/foo');
     });
@@ -11,7 +11,7 @@ test('pass', function () {
     expect($response)->toHaveLocation('/foo');
 });
 
-test('fails', function () {
+it('fails', function () {
     $response = build_response(function (Response $response) {
         $response->header('Location', '/foo');
     });
@@ -19,7 +19,7 @@ test('fails', function () {
     expect($response)->toHaveLocation('/bar');
 })->throws(ExpectationFailedException::class, 'Failed asserting that two strings are equal');
 
-test('pass with negation', function () {
+it('passes with negation', function () {
     $response = build_response(function (Response $response) {
         $response->header('Location', '/foo');
     });
@@ -27,7 +27,7 @@ test('pass with negation', function () {
     expect($response)->not->toHaveLocation('/bar');
 });
 
-test('fails with negation', function () {
+it('fails with negation', function () {
     $response = build_response(function (Response $response) {
         $response->header('Location', '/foo');
     });

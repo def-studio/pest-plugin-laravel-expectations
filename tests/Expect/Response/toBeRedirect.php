@@ -3,37 +3,37 @@
 use function Pest\Laravel\get;
 use PHPUnit\Framework\ExpectationFailedException;
 
-test('pass', function () {
+it('passes', function () {
     $response = get('/redirect');
 
     expect($response)->toBeRedirect();
 });
 
-test('pass with uri check', function () {
+it('passes with uri check', function () {
     $response = get('/redirect');
 
     expect($response)->toBeRedirect('/ok');
 });
 
-test('fails', function () {
+it('fails', function () {
     $response = get('/ok');
 
     expect($response)->toBeRedirect();
 })->throws(ExpectationFailedException::class, 'Response status code [200] is not a redirect status code');
 
-test('fails with uri check', function () {
+it('fails with uri check', function () {
     $response = get('/redirect/out');
 
     expect($response)->toBeRedirect('/ok');
 })->throws(ExpectationFailedException::class, 'Failed asserting that the redirect uri [https://www.google.it] matches [/ok]');
 
-test('pass with negation', function () {
+it('passes with negation', function () {
     $response = get('/ok');
 
     expect($response)->not->toBeRedirect();
 });
 
-test('fails with negation', function () {
+it('fails with negation', function () {
     $response = get('/redirect');
 
     expect($response)->not->toBeRedirect();

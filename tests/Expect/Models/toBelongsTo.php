@@ -5,7 +5,7 @@ use Tests\Models\Comment;
 use Tests\Models\Post;
 use Tests\Models\User;
 
-test('pass', function () {
+it('passes', function () {
     $user = User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -21,7 +21,7 @@ test('pass', function () {
     expect($post)->toBelongTo($user);
 });
 
-test('pass with custom relationship', function () {
+it('passes with custom relationship', function () {
     $post = Post::create([
         'title' => 'foo',
     ]);
@@ -36,7 +36,7 @@ test('pass with custom relationship', function () {
     expect($comment)->toBelongTo($post, 'related_post');
 });
 
-test('fail without needed custom relationship', function () {
+it('fails without needed custom relationship', function () {
     $post = Post::create([
         'title' => 'foo',
     ]);
@@ -51,7 +51,7 @@ test('fail without needed custom relationship', function () {
     expect($comment)->toBelongTo($post);
 })->throws(ExpectationFailedException::class, "Failed to assert that [Tests\Models\Comment] has relationship [post]");
 
-test('fail without association', function () {
+it('fails without association', function () {
     $user = User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -65,7 +65,7 @@ test('fail without association', function () {
     expect($post)->toBelongTo($user);
 })->throws(ExpectationFailedException::class, "Failed asserting that [Tests\Models\Post#1] belongs to [Tests\Models\User#1]");
 
-test('fail when passing wrong model ', function () {
+it('fails when passing wrong model ', function () {
     $user = User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
@@ -85,7 +85,7 @@ test('fail when passing wrong model ', function () {
     expect($firstPost)->toBelongTo($user);
 })->throws(ExpectationFailedException::class, "Failed asserting that [Tests\Models\Post#1] belongs to [Tests\Models\User#1]");
 
-test('fail when passing wrong model class', function () {
+it('fails when passing wrong model class', function () {
     $user = User::create([
         'name'     => 'test user',
         'email'    => 'email@test.xx',
