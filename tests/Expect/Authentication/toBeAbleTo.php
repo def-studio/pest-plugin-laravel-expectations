@@ -28,7 +28,7 @@ test('pass with multiple arguments', function () {
     expect($user)->toBeAbleTo('merge', [$post_1, $post_2]);
 });
 
-test('fail', function () {
+test('fails', function () {
     $user = User::make(['id' => 1]);
     $post = Post::make(['user_id' => 2]);
 

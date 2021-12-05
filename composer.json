@@ -28,10 +28,10 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0 || ^8.1",
-        "pestphp/pest": "^1.0",
+        "php": "^8.0 || ^8.1",
+        "pestphp/pest": "dev-master",
         "pestphp/pest-plugin": "^1.0",
-        "pestphp/pest-plugin-laravel": "^1.1"
+        "defstudio/pest-plugin-laravel": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -47,7 +47,7 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^6.21",
+        "orchestra/testbench": "dev-phpunit10",
         "pestphp/pest-dev-tools": "dev-master"
     },
     "extra": {
@@ -72,5 +72,11 @@
             "@test:unit"
         ],
         "coverage": "@test:unit --coverage"
-    }
+    },
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/def-studio/pest-plugin-laravel"
+        }
+    ]
 }
